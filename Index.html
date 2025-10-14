@@ -1,0 +1,194 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!doctype html>\
+<html lang="en">\
+<head>\
+  <meta charset="utf-8" />\
+  <meta name="viewport" content="width=device-width,initial-scale=1" />\
+  <title>Cyber Automation \'97 [Your Name]</title>\
+  <meta name="description" content="Portfolio: Cybersecurity automation demos and projects." />\
+  <style>\
+    /* Simple dark cyber theme \'97 edit colors as you like */\
+    :root\{\
+      --bg:#071017; --card:#0b1a24; --muted:#9fb3bf; --accent:#00d1ff; --glow:rgba(0,209,255,0.12);\
+      --glass: rgba(255,255,255,0.03);\
+      --radius:14px;\
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;\
+    \}\
+    *\{box-sizing:border-box\}\
+    body\{margin:0;background:linear-gradient(180deg,var(--bg),#041018);color:#d8eef6;line-height:1.5\}\
+    .wrap\{max-width:980px;margin:36px auto;padding:28px\}\
+    header\{display:flex;align-items:center;gap:16px\}\
+    .logo\{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#002a36,var(--accent));display:flex;align-items:center;justify-content:center;font-weight:700;color:#001320;box-shadow:0 6px 30px var(--glow)\}\
+    h1\{margin:0;font-size:26px\}\
+    p.lead\{color:var(--muted);margin:6px 0 18px\}\
+\
+    .card\{background:linear-gradient(180deg,var(--card),rgba(10,30,40,0.6));padding:18px;border-radius:var(--radius);box-shadow:0 6px 30px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.02)\}\
+    .grid\{display:grid;grid-template-columns:1fr 360px;gap:18px\}\
+\
+    .section-title\{font-size:13px;color:var(--muted);margin-bottom:8px\}\
+    pre\{background:var(--glass);padding:12px;border-radius:8px;color:var(--muted);overflow:auto\}\
+\
+    .demo-box\{height:200px;background:linear-gradient(135deg, rgba(0,0,0,0.2), rgba(255,255,255,0.02));display:flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid rgba(255,255,255,0.02)\}\
+    .btn\{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#6df);color:#00262b;font-weight:700;text-decoration:none;border:none;cursor:pointer\}\
+    .muted\{color:var(--muted);font-size:13px\}\
+    .stat\{display:flex;gap:12px;align-items:center\}\
+    .stat .num\{font-size:20px;font-weight:700;color:var(--accent)\}\
+    footer\{margin-top:20px;color:var(--muted);font-size:13px\}\
+\
+    @media (max-width:880px)\{.grid\{grid-template-columns:1fr;\}\
+      .wrap\{padding:14px\}\}\
+  </style>\
+</head>\
+<body>\
+  <div class="wrap">\
+    <header>\
+      <div class="logo">CD</div>\
+      <div>\
+        <h1>Cyber Automation \'97 [Your Name]</h1>\
+        <p class="lead">I build small, practical security automations and dashboards that reduce alert noise and speed SOC response. Below: one demo and the code to run it.</p>\
+      </div>\
+    </header>\
+\
+    <main class="card" style="margin-top:18px">\
+      <div class="grid">\
+        <section>\
+          <div class="section-title">Featured Project \'97 Threat Alert Bot (Demo)</div>\
+          <h2 style="margin:0 0 8px">Endpoint Threat Alert & Correlation</h2>\
+          <p class="muted">A compact automation that collects EDR-like telemetry, checks IP reputation, and pushes summaries to Slack/Webhook. Built to be readable, repeatable and safe to run in lab environments.</p>\
+\
+          <div style="margin-top:12px">\
+            <div class="section-title">What it does</div>\
+            <ul class="muted">\
+              <li>Parses endpoint logs for suspicious commands and failed authentications.</li>\
+              <li>Checks external IP reputation via public API (demo mode).</li>\
+              <li>Posts a short alert with evidence and suggested actions to a webhook.</li>\
+            </ul>\
+          </div>\
+\
+          <div style="margin-top:12px">\
+            <div class="section-title">Quick demo</div>\
+            <!-- Replace demo.gif with your real gif or short mp4. -->\
+            <div class="demo-box" id="demoBox">\
+              <div style="text-align:center">\
+                <div style="font-size:18px;font-weight:700">Demo paused</div>\
+                <div class="muted" style="margin-top:6px">Click <strong>Run demo</strong> to simulate telemetry and watch the alert summary.</div>\
+              </div>\
+            </div>\
+            <div style="margin-top:10px;display:flex;gap:10px;align-items:center">\
+              <button class="btn" id="runBtn">Run demo</button>\
+              <a class="muted" id="codeLink" href="#" onclick="alert('Replace with GitHub link')">View code on GitHub</a>\
+            </div>\
+          </div>\
+\
+          <div style="margin-top:14px">\
+            <div class="section-title">How to run (lab-safe)</div>\
+            <pre>1) Clone repo (placeholder link)\
+2) Edit config: webhook URL + demo mode\
+3) python3 threat_alert_demo.py --demo\
+4) View alerts delivered to your webhook</pre>\
+          </div>\
+\
+          <div style="margin-top:14px">\
+            <div class="section-title">Why this matters</div>\
+            <p class="muted">This automation reduces time-to-detect for endpoint compromises by correlating process telemetry with network reputation and surfacing only high-confidence alerts to analysts \'97 cutting noise and enabling faster triage.</p>\
+          </div>\
+        </section>\
+\
+        <aside>\
+          <div style="display:flex;flex-direction:column;gap:12px">\
+            <div class="card">\
+              <div class="section-title">Live Stats (simulated)</div>\
+              <div class="stat" style="margin-top:8px">\
+                <div>\
+                  <div class="num" id="alertsCount">0</div>\
+                  <div class="muted">Alerts generated</div>\
+                </div>\
+              </div>\
+              <div style="margin-top:10px">\
+                <div class="muted">Last alert:</div>\
+                <div id="lastAlert" class="muted">\'97</div>\
+              </div>\
+            </div>\
+\
+            <div class="card">\
+              <div class="section-title">Skills & Tools</div>\
+              <ul class="muted" style="margin:6px 0 0 16px">\
+                <li>SIEM: QRadar, Sentinel, Splunk (examples)</li>\
+                <li>EDR: CrowdStrike, CarbonBlack, Microsoft Defender</li>\
+                <li>Languages: Python, PowerShell</li>\
+                <li>APIs: AbuseIPDB, VirusTotal, Webhooks</li>\
+              </ul>\
+            </div>\
+\
+            <div class="card">\
+              <div class="section-title">Contact</div>\
+              <div class="muted">Email: you@domain.com</div>\
+              <div class="muted">WhatsApp: +27 67 221 8280</div>\
+              <div style="margin-top:8px"><a class="btn" href="#contact" onclick="document.getElementById('contact').scrollIntoView()">Get in touch</a></div>\
+            </div>\
+          </div>\
+        </aside>\
+      </div>\
+\
+      <div id="contact" style="margin-top:18px;display:flex;gap:12px;align-items:flex-start">\
+        <div style="flex:1">\
+          <div class="section-title">About me</div>\
+          <p class="muted">SOC & SIEM analyst with experience in QRadar, Sentinel and Splunk. I build small automations to reduce SOC workload and accelerate incident response. I also create dashboards and monthly reports for leadership.</p>\
+        </div>\
+        <div style="min-width:260px">\
+          <div class="section-title">Send a message</div>\
+          <form onsubmit="event.preventDefault();alert('Replace this with your form handler or mailto link')" class="muted">\
+            <label style="display:block;margin-bottom:6px">Name</label>\
+            <input required style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"/>\
+            <label style="display:block;margin:10px 0 6px">Message</label>\
+            <textarea required style="width:100%;height:80px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"></textarea>\
+            <div style="margin-top:8px"><button class="btn" type="submit">Send</button></div>\
+          </form>\
+        </div>\
+      </div>\
+\
+      <footer style="margin-top:16px">Built for demo purposes \'97 replace placeholders with your code links, screenshots, and webhook URLs.</footer>\
+    </main>\
+  </div>\
+\
+  <script>\
+    // Simple demo simulator \'97 safe. Replace with real fetches in your environment.\
+    const runBtn = document.getElementById('runBtn');\
+    const alertsCount = document.getElementById('alertsCount');\
+    const lastAlert = document.getElementById('lastAlert');\
+    let count = 0;\
+\
+    runBtn.addEventListener('click', ()=>\{\
+      // simulate a sequence of telemetry items and one high-confidence alert\
+      runBtn.disabled = true; runBtn.textContent = 'Running...';\
+      const events = [\
+        'Suspicious PowerShell command observed',\
+        'Failed admin login (3 attempts)',\
+        'Outbound connection to risky IP',\
+        'Process spawned from admin-scheduled task'\
+      ];\
+\
+      let i = 0;\
+      const t = setInterval(()=>\{\
+        if(i<events.length)\{\
+          lastAlert.textContent = events[i];\
+          i++;\
+        \} else \{\
+          clearInterval(t);\
+          count++;\
+          alertsCount.textContent = count;\
+          lastAlert.textContent = 'High-confidence alert: possible endpoint compromise \'97 see evidence & suggested actions.';\
+          runBtn.disabled = false; runBtn.textContent = 'Run demo';\
+        \}\
+      \},700);\
+    \});\
+  </script>\
+</body>\
+</html>\
+}
