@@ -1,0 +1,6 @@
+title: Cyber Automation Portfolio
+description: Showcasing automation scripts and cybersecurity tools
+theme: jekyll-theme-minimal
+markdown: kramdown
+plugins:
+  - jekyll-seo-tag
