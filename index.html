@@ -1,34 +1,9 @@
----
-layout: default
-title: Home
----
-
-<div class="container">
-  <h1>Cybersecurity Automation</h1>
-  <p>Explore my collection of scripts and automations built for security and efficiency.</p>
-
-  <div class="automation-box">
-    <h3>Port Scanner Automation</h3>
-    <p>Scan open ports on any target host.</p>
-    <button onclick="runAutomation()">Run Automation</button>
-    <pre id="output">Awaiting execution...</pre>
-  </div>
-</div>
-
-<script>
-  async function runAutomation() {
-    const output = document.getElementById('output');
-    output.innerText = "Running automation...";
-    const response = await fetch('https://yourusername.github.io/cyber-automation-portfolio/api/scan.py');
-    output.innerText = await response.text();
-  }
-</script>
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cyber Automation — [Your Name]</title>
+  <title>Cyber Automation — Bandile Maguga</title>
   <meta name="description" content="Portfolio: Cybersecurity automation demos and projects." />
   <style>
     /* Simple dark cyber theme — edit colors as you like */
@@ -68,7 +43,7 @@ title: Home
     <header>
       <div class="logo">CD</div>
       <div>
-        <h1>Cyber Automation — [Your Name]</h1>
+        <h1>Cyber Automation — Bandile Maguga</h1>
         <p class="lead">I build small, practical security automations and dashboards that reduce alert noise and speed SOC response. Below: one demo and the code to run it.</p>
       </div>
     </header>
@@ -146,7 +121,7 @@ title: Home
 
             <div class="card">
               <div class="section-title">Contact</div>
-              <div class="muted">Email: you@domain.com</div>
+              <div class="muted">Email: Iambandile@icloud.com</div>
               <div class="muted">WhatsApp: +27 67 221 8280</div>
               <div style="margin-top:8px"><a class="btn" href="#contact" onclick="document.getElementById('contact').scrollIntoView()">Get in touch</a></div>
             </div>
