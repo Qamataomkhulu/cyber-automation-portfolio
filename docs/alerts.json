@@ -1,16 +1,16 @@
 {
-  "generated_at": "2025-10-16T08:28:20.311570+00:00",
+  "generated_at": "2025-10-16T09:22:21.773834+00:00",
   "count": 1,
   "alerts": [
     {
-      "id": "alert-61153",
-      "timestamp": "2025-10-16T08:28:20.311553+00:00",
-      "summary": "HIGH confidence: Suspicious command observed from 93.184.216.34",
+      "id": "alert-89550",
+      "timestamp": "2025-10-16T09:22:21.773820+00:00",
+      "summary": "HIGH confidence: Suspicious command observed from 45.77.142.12",
       "confidence": "high",
       "evidence": {
         "process": "cmd.exe",
         "command": "schtasks /create /sc minute /tn Updater /tr C:\\Windows\\temp\\p.exe",
-        "source_ip": "93.184.216.34"
+        "source_ip": "45.77.142.12"
       }
     }
   ]
