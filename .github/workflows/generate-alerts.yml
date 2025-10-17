@@ -1,0 +1,62 @@
+name: Generate Threat Alerts
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch:  # Allow manual triggers
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  generate-alerts:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install requests
+      
+      - name: Generate alerts with IP reputation
+        env:
+          ABUSEIPDB_API_KEY: ${{ secrets.ABUSEIPDB_API_KEY }}
+        run: |
+          python threat_alert_demo.py
+      
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/alerts.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "🚨 Auto-update threat alerts [$(date +'%Y-%m-%d %H:%M:%S')]"
+          git push
+      
+      - name: Upload artifact for Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs/'
+  
+  deploy:
+    needs: generate-alerts
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
