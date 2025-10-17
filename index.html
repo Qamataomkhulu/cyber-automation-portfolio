@@ -6,10 +6,10 @@
   <title>Cyber Automation — Bandile Maguga</title>
   <meta name="description" content="Portfolio: Cybersecurity automation demos and projects." />
   <style>
-    :root{
-      --bg:#071017; --card:#0b1a24; --muted:#9fb3bf; --accent:#00d1ff;
-      --glow:rgba(0,209,255,0.12); --glass: rgba(255,255,255,0.03);
-      --radius:14px; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    :root {
+      --bg: #071017; --card: #0b1a24; --muted: #9fb3bf; --accent: #00d1ff;
+      --glow: rgba(0,209,255,0.12); --glass: rgba(255,255,255,0.03);
+      --radius: 14px; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
     *{box-sizing:border-box}
     body{margin:0;background:linear-gradient(180deg,var(--bg),#041018);color:#d8eef6;line-height:1.5}
@@ -40,6 +40,11 @@
     .sev-low{border-left-color:#00c853;}
     footer{margin-top:20px;color:var(--muted);font-size:13px}
     @media (max-width:880px){.grid{grid-template-columns:1fr;}.wrap{padding:14px}}
+
+    /* IP Reputation Styles */
+    .ip-checker { margin-top: 20px; padding: 14px; background: var(--glass); border-radius: 10px; }
+    #ip-input { width: 70%; padding: 8px; border-radius: 8px; border: 1px solid #222; background: #0a1a22; color: #fff; }
+    #ip-result { margin-top: 12px; color: var(--muted); font-size: 14px; text-align: left; }
   </style>
 </head>
 <body>
@@ -48,7 +53,7 @@
       <div class="logo">CD</div>
       <div>
         <h1>Cyber Automation — Bandile Maguga</h1>
-        <p class="lead">I build small, practical security automations and dashboards that reduce alert noise and speed SOC response. Below: one demo and the code to run it.</p>
+        <p class="lead">I build small, practical security automations and dashboards that reduce alert noise and speed SOC response. Below: demos and live checks.</p>
       </div>
     </header>
 
@@ -57,7 +62,7 @@
         <section>
           <div class="section-title">Featured Project — Threat Alert Bot (Demo)</div>
           <h2 style="margin:0 0 8px">Endpoint Threat Alert & Correlation</h2>
-          <p class="muted">Automation that collects EDR-like telemetry, checks IP reputation, and pushes summaries to Slack/Webhook. Built to be readable, repeatable and safe to run in lab environments.</p>
+          <p class="muted">Automation that collects EDR-like telemetry, checks IP reputation, and pushes summaries to Slack/Webhook. Built to be readable, repeatable, and safe for lab environments.</p>
 
           <div style="margin-top:12px">
             <div class="section-title">Latest Alerts (auto-updated)</div>
@@ -73,12 +78,20 @@
             </div>
           </div>
 
+          <!-- 🕵️ IP REPUTATION CHECKER -->
+          <div class="ip-checker">
+            <div class="section-title">IP Reputation Checker</div>
+            <input type="text" id="ip-input" placeholder="Enter IP (e.g., 8.8.8.8)">
+            <button class="btn" id="checkIpBtn">Check Reputation</button>
+            <div id="ip-result">Enter an IP to check threat reputation.</div>
+          </div>
+
           <div style="margin-top:14px">
             <div class="section-title">How it works</div>
             <pre>1) Python script (threat_alert_demo.py) simulates telemetry → writes alerts.json
-2) GitHub Actions runs and commits alerts.json
-3) GitHub Pages rebuilds → this page fetches and shows new alerts
-4) You can trigger manually or let it auto-refresh</pre>
+2) GitHub Actions commits alerts.json
+3) GitHub Pages rebuilds → this page fetches new alerts
+4) IP Checker lets you verify reputation in real time</pre>
           </div>
         </section>
 
@@ -166,7 +179,6 @@
       if (!auto) refreshBtn.textContent = 'Refresh';
     }
 
-    // Manual refresh
     refreshBtn.addEventListener('click', ()=>{
       refreshBtn.textContent='Refreshing...';
       loadAlerts();
@@ -177,6 +189,38 @@
 
     // Initial load
     loadAlerts(true);
+
+    // 🕵️ IP Reputation Checker Logic
+    document.getElementById('checkIpBtn').addEventListener('click', async () => {
+      const ip = document.getElementById('ip-input').value.trim();
+      const resultDiv = document.getElementById('ip-result');
+
+      if (!ip) {
+        resultDiv.innerHTML = '⚠️ Please enter a valid IP address.';
+        return;
+      }
+
+      resultDiv.innerHTML = '⏳ Checking reputation...';
+
+      try {
+        const response = await fetch(`https://ip-api.com/json/${ip}`);
+        const data = await response.json();
+
+        if (data.status === "success") {
+          resultDiv.innerHTML = `
+            ✅ <b>IP:</b> ${data.query}<br>
+            🌍 <b>Country:</b> ${data.country}<br>
+            🏙️ <b>City:</b> ${data.city}<br>
+            🕸️ <b>ISP:</b> ${data.isp}<br>
+            🔒 <b>Threat Level:</b> Low (public API — limited detail)
+          `;
+        } else {
+          resultDiv.innerHTML = `❌ Error: ${data.message}`;
+        }
+      } catch (error) {
+        resultDiv.innerHTML = '🚫 Unable to fetch IP reputation.';
+      }
+    });
   </script>
 </body>
 </html>
