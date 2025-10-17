@@ -6,36 +6,40 @@
   <title>Cyber Automation — Bandile Maguga</title>
   <meta name="description" content="Portfolio: Cybersecurity automation demos and projects." />
   <style>
-    /* Simple dark cyber theme — edit colors as you like */
     :root{
-      --bg:#071017; --card:#0b1a24; --muted:#9fb3bf; --accent:#00d1ff; --glow:rgba(0,209,255,0.12);
-      --glass: rgba(255,255,255,0.03);
-      --radius:14px;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --bg:#071017; --card:#0b1a24; --muted:#9fb3bf; --accent:#00d1ff;
+      --glow:rgba(0,209,255,0.12); --glass: rgba(255,255,255,0.03);
+      --radius:14px; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
     *{box-sizing:border-box}
     body{margin:0;background:linear-gradient(180deg,var(--bg),#041018);color:#d8eef6;line-height:1.5}
     .wrap{max-width:980px;margin:36px auto;padding:28px}
     header{display:flex;align-items:center;gap:16px}
-    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#002a36,var(--accent));display:flex;align-items:center;justify-content:center;font-weight:700;color:#001320;box-shadow:0 6px 30px var(--glow)}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#002a36,var(--accent));
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#001320;box-shadow:0 6px 30px var(--glow)}
     h1{margin:0;font-size:26px}
     p.lead{color:var(--muted);margin:6px 0 18px}
-
-    .card{background:linear-gradient(180deg,var(--card),rgba(10,30,40,0.6));padding:18px;border-radius:var(--radius);box-shadow:0 6px 30px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.02)}
+    .card{background:linear-gradient(180deg,var(--card),rgba(10,30,40,0.6));padding:18px;border-radius:var(--radius);
+      box-shadow:0 6px 30px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.02)}
     .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
-
     .section-title{font-size:13px;color:var(--muted);margin-bottom:8px}
     pre{background:var(--glass);padding:12px;border-radius:8px;color:var(--muted);overflow:auto}
-
-    .demo-box{height:200px;background:linear-gradient(135deg, rgba(0,0,0,0.2), rgba(255,255,255,0.02));display:flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#6df);color:#00262b;font-weight:700;text-decoration:none;border:none;cursor:pointer}
+    .demo-box{min-height:220px;background:linear-gradient(135deg, rgba(0,0,0,0.2), rgba(255,255,255,0.02));
+      display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;border-radius:10px;
+      border:1px solid rgba(255,255,255,0.02);overflow-y:auto;padding:12px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#6df);
+      color:#00262b;font-weight:700;text-decoration:none;border:none;cursor:pointer}
     .muted{color:var(--muted);font-size:13px}
-    .stat{display:flex;gap:12px;align-items:center}
-    .stat .num{font-size:20px;font-weight:700;color:var(--accent)}
+    .alert-item{border-left:4px solid var(--accent);background:rgba(255,255,255,0.03);
+      padding:10px 12px;border-radius:8px;margin-bottom:10px;box-shadow:0 2px 6px rgba(0,0,0,0.3)}
+    .alert-item h3{margin:0;font-size:16px}
+    .alert-item small{font-size:12px;color:var(--muted)}
+    .sev-critical{border-left-color:#ff3b3b;}
+    .sev-high{border-left-color:#ff9900;}
+    .sev-medium{border-left-color:#ffd93b;}
+    .sev-low{border-left-color:#00c853;}
     footer{margin-top:20px;color:var(--muted);font-size:13px}
-
-    @media (max-width:880px){.grid{grid-template-columns:1fr;}
-      .wrap{padding:14px}}
+    @media (max-width:880px){.grid{grid-template-columns:1fr;}.wrap{padding:14px}}
   </style>
 </head>
 <body>
@@ -53,50 +57,35 @@
         <section>
           <div class="section-title">Featured Project — Threat Alert Bot (Demo)</div>
           <h2 style="margin:0 0 8px">Endpoint Threat Alert & Correlation</h2>
-          <p class="muted">A compact automation that collects EDR-like telemetry, checks IP reputation, and pushes summaries to Slack/Webhook. Built to be readable, repeatable and safe to run in lab environments.</p>
+          <p class="muted">Automation that collects EDR-like telemetry, checks IP reputation, and pushes summaries to Slack/Webhook. Built to be readable, repeatable and safe to run in lab environments.</p>
 
           <div style="margin-top:12px">
-            <div class="section-title">What it does</div>
-            <ul class="muted">
-              <li>Parses endpoint logs for suspicious commands and failed authentications.</li>
-              <li>Checks external IP reputation via public API (demo mode).</li>
-              <li>Posts a short alert with evidence and suggested actions to a webhook.</li>
-            </ul>
-          </div>
-
-          <div style="margin-top:12px">
-            <div class="section-title">Latest run (generated by GitHub Actions)</div>
-            <div class="demo-box" id="demoBox">
-              <div style="text-align:center">
+            <div class="section-title">Latest Alerts (auto-updated)</div>
+            <div class="demo-box" id="alertsContainer">
+              <div style="text-align:center;margin:auto;">
                 <div style="font-size:18px;font-weight:700">Waiting for data</div>
-                <div class="muted" style="margin-top:6px">Click <strong>Refresh</strong> to load the latest generated alerts.json</div>
+                <div class="muted" style="margin-top:6px">Click <strong>Refresh</strong> to load or wait for next auto-update.</div>
               </div>
             </div>
             <div style="margin-top:10px;display:flex;gap:10px;align-items:center">
               <button class="btn" id="refreshBtn">Refresh</button>
-              <a class="muted" id="codeLink" href="https://github.com/qamataomkhulu/cyber-automation-portfolio" target="_blank">View code on GitHub</a>
+              <a class="muted" href="https://github.com/qamataomkhulu/cyber-automation-portfolio" target="_blank">View code on GitHub</a>
             </div>
           </div>
 
           <div style="margin-top:14px">
-            <div class="section-title">How it works (behind the scenes)</div>
-            <pre>1) A small Python script (threat_alert_demo.py) simulates telemetry and writes docs/alerts.json
-2) A GitHub Actions workflow runs the script on push or schedule and commits alerts.json
-3) GitHub Pages serves the site; the page fetches alerts.json and displays the latest alert
-4) You can trigger the workflow manually from Actions or push changes to main
-</pre>
-          </div>
-
-          <div style="margin-top:14px">
-            <div class="section-title">Why this matters</div>
-            <p class="muted">This automation reduces time-to-detect for endpoint compromises by correlating process telemetry with network reputation and surfacing only high-confidence alerts to analysts — cutting noise and enabling faster triage.</p>
+            <div class="section-title">How it works</div>
+            <pre>1) Python script (threat_alert_demo.py) simulates telemetry → writes alerts.json
+2) GitHub Actions runs and commits alerts.json
+3) GitHub Pages rebuilds → this page fetches and shows new alerts
+4) You can trigger manually or let it auto-refresh</pre>
           </div>
         </section>
 
         <aside>
           <div style="display:flex;flex-direction:column;gap:12px">
             <div class="card">
-              <div class="section-title">Live Stats (from alerts.json)</div>
+              <div class="section-title">Live Stats</div>
               <div class="stat" style="margin-top:8px">
                 <div>
                   <div class="num" id="alertsCount">0</div>
@@ -112,8 +101,8 @@
             <div class="card">
               <div class="section-title">Skills & Tools</div>
               <ul class="muted" style="margin:6px 0 0 16px">
-                <li>SIEM: QRadar, Sentinel, Splunk (examples)</li>
-                <li>EDR: CrowdStrike, CarbonBlack, Microsoft Defender</li>
+                <li>SIEM: QRadar, Sentinel, Splunk</li>
+                <li>EDR: CrowdStrike, CarbonBlack, Defender</li>
                 <li>Languages: Python, PowerShell</li>
                 <li>APIs: AbuseIPDB, VirusTotal, Webhooks</li>
               </ul>
@@ -123,27 +112,9 @@
               <div class="section-title">Contact</div>
               <div class="muted">Email: Iambandile@icloud.com</div>
               <div class="muted">WhatsApp: +27 67 221 8280</div>
-              <div style="margin-top:8px"><a class="btn" href="#contact" onclick="document.getElementById('contact').scrollIntoView()">Get in touch</a></div>
             </div>
           </div>
         </aside>
-      </div>
-
-      <div id="contact" style="margin-top:18px;display:flex;gap:12px;align-items:flex-start">
-        <div style="flex:1">
-          <div class="section-title">About me</div>
-          <p class="muted">SOC & SIEM analyst with experience in QRadar, Sentinel and Splunk. I build small automations to reduce SOC workload and accelerate incident response. I also create dashboards and monthly reports for leadership.</p>
-        </div>
-        <div style="min-width:260px">
-          <div class="section-title">Send a message</div>
-          <form onsubmit="event.preventDefault();alert('Replace this with your form handler or mailto link')" class="muted">
-            <label style="display:block;margin-bottom:6px">Name</label>
-            <input required style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"/>
-            <label style="display:block;margin:10px 0 6px">Message</label>
-            <textarea required style="width:100%;height:80px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"></textarea>
-            <div style="margin-top:8px"><button class="btn" type="submit">Send</button></div>
-          </form>
-        </div>
       </div>
 
       <footer style="margin-top:16px">Built for demo purposes — replace placeholders with your code links, screenshots, and webhook URLs.</footer>
@@ -151,34 +122,61 @@
   </div>
 
   <script>
-    // Get the base path dynamically
-    const basePath = window.location.pathname.endsWith('/') 
-      ? window.location.pathname 
-      : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-
-    // Fetch alerts.json from the site and render simple stats
     const refreshBtn = document.getElementById('refreshBtn');
+    const alertsContainer = document.getElementById('alertsContainer');
     const alertsCount = document.getElementById('alertsCount');
     const lastAlert = document.getElementById('lastAlert');
 
-    async function loadAlerts(){
-      try{
-        // Use relative path that works both locally and on GitHub Pages
-        const res = await fetch(basePath + 'alerts.json?_=' + Date.now());
-        if(!res.ok) throw new Error('No alerts.json');
+    async function loadAlerts(auto=false) {
+      try {
+        const res = await fetch('alerts.json?_=' + Date.now());
+        if (!res.ok) throw new Error('Could not fetch alerts.json');
         const data = await res.json();
-        alertsCount.textContent = data.count || (data.alerts && data.alerts.length) || 0;
-        const last = (data.alerts && data.alerts[0]) || {};
-        lastAlert.textContent = last.summary || (data.alerts && data.alerts[0]?.message) || '—';
-      }catch(e){
-        alertsCount.textContent = 0;
-        lastAlert.textContent = 'No generated alerts yet. Trigger the GitHub Action or push a change.';
+
+        const alerts = data.alerts || [];
+        alertsCount.textContent = alerts.length || 0;
+
+        if (alerts.length === 0) {
+          alertsContainer.innerHTML = '<p class="muted" style="text-align:center">No alerts yet. Waiting for next simulation...</p>';
+          return;
+        }
+
+        // update last alert summary
+        const latest = alerts[0];
+        lastAlert.textContent = latest.title || latest.summary || latest.description || '—';
+
+        // render all alerts
+        alertsContainer.innerHTML = '';
+        alerts.forEach(alert => {
+          const sev = (alert.severity || 'low').toLowerCase();
+          const div = document.createElement('div');
+          div.className = `alert-item sev-${sev}`;
+          div.innerHTML = `
+            <h3>${alert.title || 'Untitled Alert'}</h3>
+            <p class="muted">${alert.description || alert.summary || 'No description provided.'}</p>
+            <small><b>Severity:</b> ${alert.severity || 'N/A'} | <b>Timestamp:</b> ${alert.timestamp || '—'}</small>
+          `;
+          alertsContainer.appendChild(div);
+        });
+
+      } catch (err) {
+        console.error(err);
+        alertsContainer.innerHTML = '<p class="muted" style="text-align:center">⚠️ Could not load alerts. Ensure alerts.json exists.</p>';
       }
+      if (!auto) refreshBtn.textContent = 'Refresh';
     }
 
-    refreshBtn.addEventListener('click', ()=>{ loadAlerts(); refreshBtn.textContent='Refreshing...'; setTimeout(()=>refreshBtn.textContent='Refresh',900)});
-    // auto-load on open
-    loadAlerts();
+    // Manual refresh
+    refreshBtn.addEventListener('click', ()=>{
+      refreshBtn.textContent='Refreshing...';
+      loadAlerts();
+    });
+
+    // Auto-refresh every 2 minutes
+    setInterval(()=> loadAlerts(true), 120000);
+
+    // Initial load
+    loadAlerts(true);
   </script>
 </body>
 </html>
